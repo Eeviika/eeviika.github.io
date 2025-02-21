@@ -2,7 +2,7 @@
 
 body {
     font-family: 'comic sans ms';
-    background-image: url("images/static/bg.jpg");
+    background-image: url("../images/static/bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
