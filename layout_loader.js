@@ -9,19 +9,35 @@ document.addEventListener("DOMContentLoaded", function() {
         const parser = new DOMParser();
         const layoutDoc = parser.parseFromString(layoutHTML, "text/html");
 
-        var currentBody = document.body.innerHTML;
+        // Store current body content
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = document.body.innerHTML;
+
+        // Replace body with layout's body content
         document.body.innerHTML = layoutDoc.body.innerHTML;
-        
+
+        // Find the #content div in the new layout
         const mainDiv = document.getElementById("content");
 
-        if (mainDiv && currentBody) {
-            mainDiv.appendChild(parser.parseFromString(currentBody, "text/html").body);
-        } else {
-            console.error("Could not find main content div or current body content. Please check layout.html and the current page's content.");
+        if (mainDiv) {
+            // Move existing content into #content
+            while (tempDiv.firstChild) {
+                mainDiv.appendChild(tempDiv.firstChild);
+            }
         }
 
-        console.log("Layout loaded successfully.");
+        // Check for script tags in "content" div and move them back to the body
+        const scripts = mainDiv.querySelectorAll("script");
+        scripts.forEach(script => {
+            document.body.appendChild(script);
+        });
 
+        // Get the title of the page and replace the h1 element in the banner
+        const title = document.title;
+        const banner = document.getElementById("banner");
+        if (banner) {
+            banner.querySelector("h1").textContent = title;
+        }
     })
     .catch(error => {
         console.error("Error loading layout.html: " + error);
