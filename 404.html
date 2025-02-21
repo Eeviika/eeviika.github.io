@@ -3,9 +3,21 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="styles.css" />
-		<link rel="stylesheet" href="404.css" />
-		<title>You appear to be lost.</title>
+		<link rel="stylesheet" href="main.css" />
+		<title>404: Not Found</title>
 	</head>
-	<body></body>
+	<body>
+		<h2 id="errorMessage">Insert error message here.</h2>
+		<br />
+		<p>
+			Whatever you were trying to look for, isn't here.
+			<br />
+			Most likely it was removed, or had its name changed.
+			<br /><br />
+			<i style="font-size: 75%;" id="errorDetails">You attempted to visit ___ at ___.</i>
+			<a href="index.html"><i style="font-size: 75%;">Return to homepage</i></a>
+		</p>
+	</body>
+	<script src="layout_loader.js" defer></script>
+	<script src="404.js" defer></script>
 </html>
